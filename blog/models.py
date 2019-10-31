@@ -18,6 +18,7 @@ publish()
 class Post(models.Model):
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
+    subtitle = models.CharField(max_length=255)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
@@ -28,3 +29,8 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        ordering = ['-created_date']
+        verbose_name = 'Post'
+        verbose_name_plural = 'Posts'
