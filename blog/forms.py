@@ -1,4 +1,5 @@
 from django import forms
+from .models import Post
 
 
 class ContactForm(forms.Form):
@@ -10,7 +11,6 @@ class ContactForm(forms.Form):
                 'placeholder':'Nome'}
         )
     )
-
     email = forms.EmailField(
         required=True,
         widget=forms.TextInput(
@@ -19,7 +19,6 @@ class ContactForm(forms.Form):
                 'placeholder':'Email'}
         )
     )
-
     msg = forms.CharField(
         required=True,
         widget=forms.Textarea(
@@ -28,3 +27,10 @@ class ContactForm(forms.Form):
                 'placeholder':'Fale conosco'}
         )
     )
+
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['title', 'subtitle', 'text']
+
